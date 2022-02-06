@@ -9,6 +9,7 @@ const heading4 = document.createElement("h2");
 
 mainHeading.id = "main";
 heading2.id = "about";
+heading2.className = "headingClass";
 heading3.id = "progress";
 heading4.id = "completed";
 
@@ -24,18 +25,18 @@ spanTop?.appendChild(heading2);
 const personalInfo = {
     name: "Kyle Mishanec",
     email: "mishanky@mail.gvsu.edu",
-    pets: 3,
-    hobby: ["Skiing", "Hiking", "Board games"],
-    hasStudentLoan: true,
+    expectedGradYear: 2023,
+    enrolledInHonorsCollege: true,
+    lastThreeMoviesWatched: ["Spider-Man: Far From Home", "Avengers: Endgame", "Avengers: Infinity War"],
  }
 const anyInfo = personalInfo as any;
 
 // Make a new table element
 const tableMain = document.createElement("table");
 tableMain.id = "personalInfoTable";
-tableMain.setAttribute("border", "1px solid black");
-tableMain.setAttribute("width", "40%");
-tableMain.setAttribute("height", "40%");
+//tableMain.setAttribute("border", "1px solid black");
+//tableMain.setAttribute("width", "40%");
+//tableMain.setAttribute("height", "40%");
 spanTop?.appendChild(tableMain);
 
 for (let i in personalInfo) {
@@ -59,6 +60,7 @@ for (let i in personalInfo) {
          
         for (let j in anyInfo[i]) {
             const listItem = document.createElement("li");
+            listItem.className = "firstList";
             listItem.innerText = anyInfo[i][j];
             list.appendChild(listItem);
         }

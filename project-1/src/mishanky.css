@@ -1,4 +1,58 @@
 body {
-    background-color: hsl(136, 75%, 80%)
-  }
-  
+    background-color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main {
+  color: red;
+}
+
+.headingClass {
+  color: blueviolet;
+}
+
+div table {
+  border: 1px solid black;
+}
+
+tr > td {
+  padding: 10px;
+  color: darkblue;
+}
+
+table ~ ol {
+  color: green;
+}
+
+table + h2 {
+  font-style: italic;
+  color: rgb(255, 0, 242);
+}
+
+td:first-child {
+  color: red;
+}
+
+h2:last-of-type {
+  font-family:'Courier New', Courier, monospace;
+}
+
+ul:first-of-type {
+  color: darkorange;
+}
+
+table:last-child {
+  border: 10px dotted black;
+}
+
+#completed + table tr:nth-child(even) {
+  background-color: lightblue;
+}
+
+#completed + table tr:nth-child(odd) {
+  background-color: lightsteelblue;
+}
+
+table > tr + tr > ul li:first-child.firstList {
+  color: aqua;
+}
