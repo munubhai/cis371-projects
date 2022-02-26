@@ -1,32 +1,14 @@
-type AuthorResponse = {
-  results: Array<Author>;
-};
-
-// Define the type User to match the JSON structure from https://randomuser.me/api
-// type SearchQuery = {
-//   message: string;
-//   data: {
-//     results: {
-//       model: {
-//         raw: string;
-//       };
-//       category: {
-//         raw: string;
-//       };
-//       brand: {
-//         raw: string;
-//       };
-//       version: {
-//         raw: string;
-//       };
-//     };
-//   };
-// };
+type Quote = {
+  id: string;
+  author: string;
+  en: string;
+}
 
 type Author = {
   name: string;
   wikiUrl: string;
+  quotes: Array<Quote>;
   quoteCount: number;
 };
 
-export { Author, AuthorResponse };
+export { Author, Quote };

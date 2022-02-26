@@ -522,31 +522,39 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-const limitInput = document.getElementById("input1");
-const fetchBtn = document.getElementById("btn1");
-const myTable = document.getElementById("mars");
-// Define a click listener on the button
-// fetchBtn?.addEventListener("click", () => {
-//   removeOldData();
-//   fetchNewData();
-// });
-// function removeOldData() {
-//   // Use the class name fromAPI to select all the rows
-//   // in the table which are generated axios data
-//   const rows: NodeListOf<HTMLTableRowElement> =
-//     document.querySelectorAll(".fromAPI");
-//   for (let k = 0; k < rows.length; k++) {
-//     // Remove the row from the parent (myTable)
-//     myTable?.removeChild(rows[k]);
-//   }
-// }
+const textInputTable1 = document.getElementById("inputTable1");
+const searchButtonTable1 = document.getElementById("btnSearchTable1");
+const table1 = document.getElementById("getAuthorInfo");
+const textInputTable2 = document.getElementById("inputTable2");
+const searchButtonTable2 = document.getElementById("btnSearchTable2");
+const table2 = document.getElementById("getQuotesByAuthor");
+// Define a click listener on the button 
+// Also need to check logic for determining
+// if an author exsits
+searchButtonTable1?.addEventListener("click", ()=>{
+    removeTable1Data();
+    fetchTable1Data();
+});
+searchButtonTable2?.addEventListener("click", ()=>{
+    removeTable2Data();
+    fetchTable2Data();
+});
+function removeTable1Data() {
+    // Use the class name fromAPI to select all the rows
+    // in the table which are generated axios data
+    const rows = document.querySelectorAll(".fromAPI");
+    for(let k = 0; k < rows.length; k++)// Remove the row from the parent (myTable)
+    table1?.removeChild(rows[k]);
+}
 // Using https://programming-quotes-api.herokuapp.com/index.html as documentation
-function fetchNewData() {
-    // Use the user input to control the number of random users to fetch
-    //const fetchLimit = (limitInput as HTMLInputElement)?.value ?? 10;
+function fetchTable1Data() {
+    // Use the text input to find the author
+    const input = textInputTable1.value;
+    const encodedInput = encodeURI(textInputTable1.value);
+    const lookupUrl = "https://programming-quotes-api.herokuapp.com/Authors/" + encodedInput;
     _axiosDefault.default.request({
         method: "GET",
-        url: "https://programming-quotes-api.herokuapp.com/Authors/Tony%20Hoare",
+        url: lookupUrl,
         params: {
         },
         headers: {
@@ -554,34 +562,100 @@ function fetchNewData() {
         }
     }).then((resp)=>resp.data
     ).then((a)=>{
-        console.log(a.name);
-    // for (let k = 0; k < ru.results.length; k++) {
-    //   const u: Author = ru.results[k];
-    //   const aRow = document.createElement("tr");
-    //   console.log(u.name);
-    //   // Use a unique class name so it is easy to remove rows later
-    //   aRow.setAttribute("class", "fromAPI");
-    //   myTable?.appendChild(aRow);
-    //   // Create a table data cell to show first name and last name
-    //   const nameCell = document.createElement("td");
-    //   //nameCell.innerText = `${u.name.first} ${u.name.last}`;
-    //   nameCell.innerText = u.name;
-    //   aRow.appendChild(nameCell);
-    //   // Create a table data cell to show date of birth
-    //   const DOBCell = document.createElement("td");
-    //   //DOBCell.innerText = u.dob.date.substring(0, 10);
-    //   aRow.appendChild(DOBCell);
-    //   aRow.appendChild(DOBCell);
-    //   // Create a table data cell to show the picture
-    //   const photoCell = document.createElement("td");
-    //   aRow.appendChild(photoCell);
-    //   const image = document.createElement("img");
-    //   //image.setAttribute("src", u.picture.thumbnail);
-    //   photoCell.appendChild(image);
-    // }
+        // Check if the author exists
+        if (a.quoteCount === undefined) {
+            // Author does not exist!
+            const aRow = document.createElement("tr");
+            aRow.setAttribute("class", "fromAPI");
+            aRow.setAttribute("id", "notFound");
+            table1?.appendChild(aRow);
+            const authorCell = document.createElement("td");
+            authorCell.innerText = "Author not found in API database";
+            aRow.appendChild(authorCell);
+            const wikiCell = document.createElement("td");
+            wikiCell.innerText = " ";
+            aRow.appendChild(wikiCell);
+            const numCell = document.createElement("td");
+            numCell.innerText = " ";
+            aRow.appendChild(numCell);
+        } else {
+            const aRow = document.createElement("tr");
+            aRow.setAttribute("class", "fromAPI");
+            table1?.appendChild(aRow);
+            const authorCell = document.createElement("td");
+            authorCell.innerText = a.name;
+            aRow.appendChild(authorCell);
+            const wikiCell = document.createElement("td");
+            //wikiCell.innerText = encodeURI(a.wikiUrl);
+            const wikiCellLink = document.createElement("a");
+            wikiCellLink.setAttribute("href", encodeURI(a.wikiUrl));
+            wikiCell.appendChild(wikiCellLink);
+            const wikiCellDiv = document.createElement("div");
+            wikiCellDiv.innerText = encodeURI(a.wikiUrl);
+            wikiCellLink.appendChild(wikiCellDiv);
+            aRow.appendChild(wikiCell);
+            const numCell = document.createElement("td");
+            numCell.innerText = a.quoteCount.toString();
+            aRow.appendChild(numCell);
+        }
     });
 }
-fetchNewData();
+function removeTable2Data() {
+    // Use the class name fromAPI to select all the rows
+    // in the table which are generated axios data
+    const rows = document.querySelectorAll(".fromAPI2");
+    for(let k = 0; k < rows.length; k++)// Remove the row from the parent (myTable)
+    table2?.removeChild(rows[k]);
+}
+function fetchTable2Data() {
+    // Use the text input to find the author
+    const input = textInputTable2.value;
+    const encodedInput = encodeURI(textInputTable2.value);
+    const lookupUrl = "https://programming-quotes-api.herokuapp.com/Quotes/author/" + encodedInput;
+    _axiosDefault.default.request({
+        method: "GET",
+        url: lookupUrl,
+        params: {
+        },
+        headers: {
+            accept: 'application/json'
+        }
+    }).then((resp)=>resp.data
+    ).then((quoteArray)=>{
+        if (quoteArray.length === 0) {
+            const aRow = document.createElement("tr");
+            aRow.setAttribute("class", "fromAPI2");
+            aRow.setAttribute("id", "notFound");
+            table2?.appendChild(aRow);
+            const authorCell = document.createElement("td");
+            authorCell.innerText = "Author not found in API database";
+            aRow.appendChild(authorCell);
+            const quoteCell = document.createElement("td");
+            quoteCell.innerText = " ";
+            aRow.appendChild(quoteCell);
+            const idCell = document.createElement("td");
+            idCell.innerText = " ";
+            aRow.appendChild(idCell);
+        }
+        for(let k = 0; k < quoteArray.length; k++){
+            const aQuote = quoteArray[k];
+            const aRow = document.createElement("tr");
+            aRow.setAttribute("class", "fromAPI2");
+            table2?.appendChild(aRow);
+            const authorCell = document.createElement("td");
+            authorCell.innerText = aQuote.author;
+            aRow.appendChild(authorCell);
+            const quoteCell = document.createElement("td");
+            quoteCell.innerText = "\"" + aQuote.en + "\"";
+            aRow.appendChild(quoteCell);
+            const idCell = document.createElement("td");
+            idCell.innerText = aQuote.id;
+            aRow.appendChild(idCell);
+        }
+    });
+}
+fetchTable1Data();
+fetchTable2Data();
 
 },{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');

@@ -2,7 +2,7 @@
 84C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\svgo\plugins\reusePaths.js132900501308724146 0
 82C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\dotenv-expand\index.d.ts132900501291927936 0
 88C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\nanoid\non-secure\package.json132900501300192970 0
-49C:\Users\kylem\GitHub\cis371-projects\webapi\dist132900557468338940 1
+49C:\Users\kylem\GitHub\cis371-projects\webapi\dist132903741959677805 1
 85C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\lines-and-columns\README.md132900501292767938 0
 70C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\svgo\LICENSE132900501286969972 0
 83C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\chalk\source\templates.js132900501295137937 0
@@ -34,7 +34,7 @@
 107C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\terser\node_modules\source-map\dist\source-map.js132900501312825129 0
 120C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\htmlnano\docs\versioned_docs\version-1.1.1\010-introduction.md132900501307886425 0
 114C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\@swc\helpers\lib\_class_static_private_field_spec_set.js132900501302452957 0
-60C:\Users\kylem\GitHub\cis371-projects\webapi\src\mystyle.css132896685540000000 0
+60C:\Users\kylem\GitHub\cis371-projects\webapi\src\mystyle.css132903736600784661 0
 57C:\Users\kylem\GitHub\cis371-projects\webapi\package.json132896685540000000 0
 67C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\commander132900501298397947 1
 91C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\lmdb\dependencies\lz4\lib\lz4hc.h132900501316878835 0
@@ -66,7 +66,7 @@
 87C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\@parcel\workers\src\Worker.js132900501306694967 0
 88C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\mdn-data\css\units.schema.json132900501302732946 0
 81C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\supports-color\index.js132900501287119972 0
-59C:\Users\kylem\GitHub\cis371-projects\webapi\src\index.html132896685540000000 0
+59C:\Users\kylem\GitHub\cis371-projects\webapi\src\index.html132903737194480811 0
 66C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\htmlnano132900501312428616 1
 79C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\@parcel\utils\LICENSE132900501297062950 0
 58C:\Users\kylem\GitHub\cis371-projects\webapi\tsconfig.json132896685540000000 0
@@ -92,13 +92,13 @@
 109C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\stylehacks\src\plugins\htmlCombinatorCommentBody.js132900501290586743 0
 85C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\svgo\plugins\removeAttrs.js132900501304657944 0
 100C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\postcss-ordered-values\src\rules\border.js132900501292827946 0
-61C:\Users\kylem\GitHub\cis371-projects\webapi\src\datatypes.ts132900553334138220 0
+61C:\Users\kylem\GitHub\cis371-projects\webapi\src\datatypes.ts132903743591931953 0
 107C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest4.c132900501311683091 0
 100C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\caniuse-lite\data\features\do-not-track.js132900501321518802 0
 74C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\svgo\lib\svgo.js132900501312198039 0
 79C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\posthtml\changelog.md132900501292082958 0
 104C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\lmdb\prebuilds\linux-x64\node.abi83.glibc.node132900501324683818 0
-56C:\Users\kylem\GitHub\cis371-projects\webapi\src\main.ts132900557467453952 0
+56C:\Users\kylem\GitHub\cis371-projects\webapi\src\main.ts132903743586371956 0
 72C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\dom-serializer132900501296287937 1
 83C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\caniuse-api\dist\utils.js132900501297337934 0
 116C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\terser\node_modules\source-map\lib\source-map-generator.js132900501314406261 0
@@ -440,7 +440,7 @@
 89C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\caniuse-lite\data\regions\TK.js132900501330846255 0
 89C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\minimist\test\parse_modified.js132900501295067953 0
 100C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\@parcel\transformer-react-refresh-wrap\lib132900501300682961 1
-67C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.b7a05eb9.js132900557468313943 0
+67C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.b7a05eb9.js132903741959652795 0
 79C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\postcss-discard-empty132900501292517945 1
 87C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\weak-lru-cache\dist\index.cjs132900501286989988 0
 94C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\css-tree\lib\syntax\atrule\import.js132900501309216740 0
@@ -4568,7 +4568,7 @@
 71C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\.bin\svgo.ps1132900501370518671 0
 69C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\.bin\terser132900501370513654 0
 73C:\Users\kylem\GitHub\cis371-projects\webapi\node_modules\.bin\terser.cmd132900501370513654 0
-68C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.9a63277e.css132900501515429670 0
-72C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.9a63277e.css.map132900501515454699 0
-71C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.b7a05eb9.js.map132900557468328946 0
-60C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.html132900501515429670 0
+68C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.9a63277e.css132903736601519651 0
+72C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.9a63277e.css.map132903736601519651 0
+71C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.b7a05eb9.js.map132903741959662805 0
+60C:\Users\kylem\GitHub\cis371-projects\webapi\dist\index.html132903737195395810 0
