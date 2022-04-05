@@ -16,6 +16,7 @@
     </div>
     <input type="text" :value="geoPosition">
     <button @click="searchCity">Add</button>
+    <button @click="clearData">Clear last added clock...</button>
     <div id="clocks">
       <Clock v-for="(c,pos) in selectedCities" :key="pos"
         :time-zone="c.timeZone" :label="c.name">
@@ -30,13 +31,16 @@ import axios, { AxiosResponse } from "axios";
 import Clock from "./70-clock.vue";
 import WorldMap from "./70-world-map.vue";
 import { Vue, Component } from "vue-property-decorator";
-
+import { CitiesFromDB } from "../views/HomeView.vue";
 const timezoneDBUrl = "http://api.timezonedb.com/v2.1";
+let Cities = Array<City>();
+
 type City = {
   name: string;
   timeZone: string;
 };
 
+export { Cities };
 type TimeZoneData = {
   countryName: string;
   gmtOffset: number;
@@ -49,7 +53,13 @@ export default class Sample extends Vue {
   selectedCities: Array<City> = [];
   apiKey = "";
   mounted(): void {
+    Cities = [];
+    this.selectedCities = [];
+    
     this.apiKey = process.env.VUE_APP_TIMEZONE_API_KEY;
+
+    Cities=(CitiesFromDB);
+    this.selectedCities = Cities;
   }
   get geoPosition(): string {
     if (this.geoPos.lat && this.geoPos.lng)
@@ -58,6 +68,11 @@ export default class Sample extends Vue {
       )}`;
     else return "N/A";
   }
+  clearData(): void {
+    const length = this.selectedCities.length;
+    this.selectedCities.pop();
+  }
+
   searchCity(): void {
     const param = new URLSearchParams();
     param.append("key", this.apiKey);
@@ -82,13 +97,18 @@ export default class Sample extends Vue {
       .then((r: any) => JSON.parse(r.contents))
       .then((r: TimeZoneData) => {
         // Add the selected location to our array
-        // Check if this time zone is already in the array
-        if (this.selectedCities.findIndex((c) => c.timeZone === r.zoneName) === -1) {
+        // Check if this city is already in the array
+        if (this.selectedCities.findIndex((c) => c.name === r.regionName) === -1) {
           this.selectedCities.push({
             name: r.regionName,
             timeZone: r.zoneName,
           });
+          Cities.push({
+            name: r.regionName,
+            timeZone: r.zoneName,
+          });
         }
+        console.log(Cities);
         //this.selectedCities.push({ name: r.regionName, timeZone: r.zoneName });
       });
   }

@@ -21,6 +21,17 @@ import {
   signOut,
   deleteUser,
 } from "firebase/auth"; 
+import { CollectionReference, collection, DocumentReference, doc, updateDoc, Firestore, addDoc, setDoc, getDoc } from "firebase/firestore";
+import { firebaseConfig, app, db } from "@/myconfig";
+import { Cities } from "../components/70-world-time.vue";
+import 'firebase/firestore';
+
+type City = {
+  name: string;
+  timeZone: string;
+};
+const CitiesFromDB = Array<City>();
+export { CitiesFromDB };
 
 @Component({ components: { WorldTime } })
 export default class HomeView extends Vue {
@@ -36,6 +47,7 @@ export default class HomeView extends Vue {
       if (user) {
         this.userPhotoURL = user.photoURL ?? "";
         this.userInfo = `${user.displayName ?? "No Name"}`;
+        this.getData();
       }
     });
   }
@@ -48,9 +60,32 @@ export default class HomeView extends Vue {
   }
 
   saveData(): void {
+    const saveDataColl:CollectionReference = collection(db, "saveData");
+    const userSaveDataDocument:DocumentReference = doc(saveDataColl, this.auth?.currentUser?.uid);
 
+    const userID = this.auth?.currentUser?.uid;
+    const userID2 = "" + userID;
+    setDoc(doc(db, "saveData", userID2), {
+        dataArray: {
+          Cities: Cities,
+        }
+    });
+    
+    // db.collection("saveData").doc(this.auth?.currentUser?.uid).set({
+    //   dataArray: {
+    //     Cities: Cities,
+    //   }
+    // });
   }
-
+  getData(): void {
+    const userID = this.auth?.currentUser?.uid;
+    const userID2 = "" + userID;
+    getDoc(doc(db, "saveData", userID2)).then((doc) => {
+      for (let k in doc.data()?.dataArray?.Cities) {
+        CitiesFromDB.push(doc.data()?.dataArray?.Cities[k]);
+      }
+    });
+  }
   deleteAccount(): void {
     const userAuth = getAuth();
     const user = userAuth.currentUser;
