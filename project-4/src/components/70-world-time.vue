@@ -82,7 +82,14 @@ export default class Sample extends Vue {
       .then((r: any) => JSON.parse(r.contents))
       .then((r: TimeZoneData) => {
         // Add the selected location to our array
-        this.selectedCities.push({ name: r.regionName, timeZone: r.zoneName });
+        // Check if this time zone is already in the array
+        if (this.selectedCities.findIndex((c) => c.timeZone === r.zoneName) === -1) {
+          this.selectedCities.push({
+            name: r.regionName,
+            timeZone: r.zoneName,
+          });
+        }
+        //this.selectedCities.push({ name: r.regionName, timeZone: r.zoneName });
       });
   }
 

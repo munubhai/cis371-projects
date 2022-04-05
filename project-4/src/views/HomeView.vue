@@ -3,7 +3,9 @@
     <h2>This is the main page. I got here via {{byWayOf}}</h2>
     <p>{{userInfo}}</p>
     <img :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
-    <button @click="outtahere">Logout</button>
+    <button @click="logout">Logout</button>
+    <button @click="saveData">Save</button>
+    <button @click="deleteAccount">Delete Account</button>
     <WorldTime/>
   </div>
 </template>
@@ -17,6 +19,7 @@ import {
   User,
   Auth,
   signOut,
+  deleteUser,
 } from "firebase/auth"; 
 
 @Component({ components: { WorldTime } })
@@ -37,11 +40,26 @@ export default class HomeView extends Vue {
     });
   }
 
-  outtahere(): void {
+  logout(): void {
     if (this.auth) signOut(this.auth);
 
     // Back to the previous page
     this.$router.back();
+  }
+
+  saveData(): void {
+
+  }
+
+  deleteAccount(): void {
+    const userAuth = getAuth();
+    const user = userAuth.currentUser;
+    user?.delete().then(() => {
+      this.logout();
+      console.log("User deleted");
+    }).catch((error) => {
+      // Some error occurred
+    });
   }
 }
 </script>
