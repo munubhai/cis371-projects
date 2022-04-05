@@ -4,6 +4,7 @@
     <p>{{userInfo}}</p>
     <img :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
     <button @click="outtahere">Logout</button>
+    <WorldTime/>
   </div>
 </template>
 
@@ -17,7 +18,8 @@ import {
   Auth,
   signOut,
 } from "firebase/auth"; 
-@Component
+
+@Component({ components: { WorldTime } })
 export default class HomeView extends Vue {
   @Prop() readonly byWayOf!: string;
 
