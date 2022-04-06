@@ -69,12 +69,12 @@ export default class HomeView extends Vue {
   }
  
   saveData(): void {
-    const saveDataColl:CollectionReference = collection(db, "saveData");
+    const saveDataColl:CollectionReference = collection(db, "info");
     const userSaveDataDocument:DocumentReference = doc(saveDataColl, this.auth?.currentUser?.uid);
 
     const userID = this.auth?.currentUser?.uid;
     const userID2 = "" + userID;
-    setDoc(doc(db, "saveData", userID2), {
+    setDoc(doc(db, "info", userID2), {
         dataArray: {
           Cities: Cities,
         }
