@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 
 @Component({ components: { LMap, LTileLayer, LMarker } })
 export default class WorldMap extends Vue {
-  mapCenter = [0.0, 118.0];
+  mapCenter = [40.0, -100.0];
   mapUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   mapAttribution =
     "&copy; <a target='_blank' href='http://osm.org/copyright'>OpenStreetMap</a>";

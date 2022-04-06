@@ -1,8 +1,10 @@
 <template>
-  <div id="face">
+  <div v-bind="{id: isPM}">
     <div>{{time}}</div>
     <div>{{date}}</div>
     <h3 class="truncate">{{label}}</h3>
+    <a v-if="this.timeHour <= 12 " id="am"></a>
+    <a v-if="this.timeHour >= 12 " id="pm"></a>
   </div>
 </template>
 <script lang="ts">
@@ -25,7 +27,16 @@ export default class WorldClock extends Vue {
 
   zdt: ZonedDateTime | null = ZonedDateTime.now();
   timer: number | null = null;
+  timeHour = 0;
+  isPM = "facePM";
   get time(): string {
+    this.timeHour = this.zdt!.hour();
+    if (this.timeHour >= 12) {
+      this.isPM = "facePM"
+    }
+    else {
+      this.isPM = "faceAM"
+    }
     return this.zdt?.format(timeFormatter) ?? "00:00";
   }
 
@@ -53,20 +64,40 @@ export default class WorldClock extends Vue {
 </script>
 
 <style scoped>
-#face {
+#faceAM {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid red;
+  background-color: lightblue;
   border-radius: 0.5em;
   padding: 0.5em;
   margin: 4px;
   width: 6em;
 }
-#face:hover {
+
+#facePM {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+  background-color: rgb(5, 87, 180);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 4px;
+  width: 6em;
+}
+
+#faceAM:hover {
   transform: scale(1.05);
 }
-#face div:first-child {
+#faceAM div:first-child {
+  font-size: 200%;
+}
+#facePM:hover {
+  transform: scale(1.05);
+}
+#facePM div:first-child {
   font-size: 200%;
 }
 .truncate {

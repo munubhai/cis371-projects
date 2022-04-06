@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <h2>This is the main page. I got here via {{byWayOf}}</h2>
+    <h2>Timezone - CIS 371 - Project 4</h2>
+    <p>This is the main page. I got here via {{byWayOf}}</p>
+    <p>Author: Kyle Mishanec. Everything is (hopefully) correctly <b>:)</b>. If the time is AM its color will be light blue, if it is PM it will be dark blue.</p>
     <p>{{userInfo}}</p>
     <img :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
     <button @click="logout">Logout</button>
@@ -30,7 +32,7 @@ type City = {
   name: string;
   timeZone: string;
 };
-const CitiesFromDB = Array<City>();
+let CitiesFromDB = Array<City>();
 export { CitiesFromDB };
 
 @Component({ components: { WorldTime } })
@@ -53,12 +55,19 @@ export default class HomeView extends Vue {
   }
 
   logout(): void {
+    for (let k in Cities) {
+      Cities.pop();
+    }
     if (this.auth) signOut(this.auth);
-
+    CitiesFromDB = [];
+    Cities.splice(0);
+    console.log("logout");
+    console.log(CitiesFromDB);
     // Back to the previous page
-    this.$router.back();
+    this.$router.go(-1);
+    //window.location.reload();
   }
-
+ 
   saveData(): void {
     const saveDataColl:CollectionReference = collection(db, "saveData");
     const userSaveDataDocument:DocumentReference = doc(saveDataColl, this.auth?.currentUser?.uid);
@@ -82,9 +91,11 @@ export default class HomeView extends Vue {
     const userID2 = "" + userID;
     getDoc(doc(db, "saveData", userID2)).then((doc) => {
       for (let k in doc.data()?.dataArray?.Cities) {
-        CitiesFromDB.push(doc.data()?.dataArray?.Cities[k]);
+        if (CitiesFromDB.findIndex((c) => c.name === doc.data()?.dataArray?.Cities[k].name) === -1) {
+          CitiesFromDB.push(doc.data()?.dataArray?.Cities[k]);
+        }
       }
-    });
+    })  
   }
   deleteAccount(): void {
     const userAuth = getAuth();

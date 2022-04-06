@@ -1,16 +1,6 @@
 <template>
   <div>
-    <p>This sample requires an API Key from <a
-        href="https://timezonedb.com">TimeZoneDB</a>.
-      Once you sign up and get your API key, save it in
-      <code>.env.local</code> (in the same directory with
-      <code>package.json</code>) in the following format:
-
-    <pre>
-        VUE_APP_TIMEZONE_API_KEY=xxxxxxxx
-    </pre>
-    </p>
-
+    <p></p>
     <div>
       <WorldMap @map-clicked="what" />
     </div>
@@ -53,14 +43,17 @@ export default class Sample extends Vue {
   selectedCities: Array<City> = [];
   apiKey = "";
   mounted(): void {
-    Cities = [];
-    this.selectedCities = [];
-    
+    //console.log("mounted");
+    //Cities.splice(0, Cities.length);
+    //this.selectedCities.splice(0, this.selectedCities.length);
+
     this.apiKey = process.env.VUE_APP_TIMEZONE_API_KEY;
 
-    Cities=(CitiesFromDB);
-    this.selectedCities = Cities;
+    Cities = CitiesFromDB;
+    this.selectedCities = CitiesFromDB;
+
   }
+
   get geoPosition(): string {
     if (this.geoPos.lat && this.geoPos.lng)
       return `${this.geoPos.lat.toPrecision(5)},${this.geoPos.lng.toPrecision(
@@ -68,6 +61,7 @@ export default class Sample extends Vue {
       )}`;
     else return "N/A";
   }
+
   clearData(): void {
     const length = this.selectedCities.length;
     this.selectedCities.pop();
@@ -107,6 +101,7 @@ export default class Sample extends Vue {
             name: r.regionName,
             timeZone: r.zoneName,
           });
+          this.selectedCities.pop()
         }
         console.log(Cities);
         //this.selectedCities.push({ name: r.regionName, timeZone: r.zoneName });

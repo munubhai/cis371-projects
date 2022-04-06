@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link>
     </nav> -->
     <transition name="shrink-explode">
-      <router-view />
+      <router-view :key="$route.fullPath"/>
     </transition>
   </div>
 </template>

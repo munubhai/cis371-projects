@@ -20,7 +20,6 @@
         </div>
         <div id="withProvider">
           <button @click="withGMail">Google</button>
-          <button @click="withGitHub">GitHub</button>
         </div>
       </div>
     </section>
